@@ -73,7 +73,7 @@ Experimental SSB URIs do not need to be included in this specification before th
 ssb:?msaddr=<MSADDRESS>
 ```
 
-Where `<MSADDRESS>` is a [multiserver address]() string, but [percent-encoded according to RFC3986 2.1](https://tools.ietf.org/html/rfc3986#section-2.1), for example:
+Where `<MSADDRESS>` is a [multiserver address](https://github.com/ssbc/multiserver-address) string, but [percent-encoded according to RFC3986 2.1](https://tools.ietf.org/html/rfc3986#section-2.1), for example:
 
 ```
 ssb:?msaddr=net%3Awx.larpa.net%3A8008~shs%3ADTNmX%2B4SjsgZ7xyDh5xxmNtFqa6pWi5Qtw7cE8aR9TQ%3D
