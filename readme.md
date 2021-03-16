@@ -24,10 +24,10 @@ The specification in this document is compatible with `ssb-uri` while adding sup
   - `ssb:message:sha256:<MSGID>`
   - `ssb:feed:ed25519:<FEEDID>`
   - `ssb:blob:sha256:<BLOBID>`
+  - `ssb:address:multiserver?multiserverAddress=<MSADDRESS>`
 - **Experimental SSB URIs**
-  - `ssb:?msaddr=<MSADDRESS>`
-  - `ssb:?action=join-room&msaddr=<MSADDRESS>&invite=<CODE>`
-  - `ssb:?action=consume-alias&alias=<A>&userId=<UID>&signature=<SIG>&msaddr=<MSADDRESS>&roomId=<RID>`
+  - `ssb:?action=join-room&invite=<CODE>&multiserverAddress=<MSADDRESS>`
+  - `ssb:?action=consume-alias&alias=<A>&userId=<UID>&signature=<SIG>&roomId=<RID>&multiserverAddress=<MSADDRESS>`
   - `ssb:?action=start-http-auth&sid=<SID>&sc=<SC>`
 
 ## Overview
