@@ -123,7 +123,7 @@ delimiter -> ":"
 
 body -> (ref):? (queries):?
 
-ref -> type delimiter alg delimiter base64
+ref -> type delimiter alg (delimiter value):?
 
 queries -> "?" (query):+
 
@@ -133,9 +133,9 @@ queryKey -> [a-zA-Z] ([^=]):*
 
 queryVal -> [a-zA-Z0-9] ([^&]):*
 
-type -> "message" | "feed" | "blob"
+type -> "message" | "feed" | "blob" | "address"
 
-alg -> "sha256" | "ed25519"
+alg -> "sha256" | "ed25519" | "multiserver"
 
-base64 -> ([0-9a-zA-Z\-\_\=]):+
+value -> ([0-9a-zA-Z\-\_\=]):+
 ```
