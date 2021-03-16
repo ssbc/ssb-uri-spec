@@ -14,7 +14,7 @@ The `ssb` scheme is registered as [provisional under the IANA](https://www.iana.
 
 There is a thread on SSB, `%g3hPVPDEO1Aj/uPl0+J2NlhFB2bbFLIHlty+YuqFZ3w=.sha256`, where several participants gave their thoughts on the design of the SSB URI format, with several proposals put into consideration. The format of Query-only URIs were inspired by [Magnet URIs](https://www.iana.org/assignments/uri-schemes/prov/magnet).
 
-[ssb-uri](https://github.com/fraction/ssb-uri) is one outcome of that discussion, and is referred to in the IANA page. The `ssb-uri` library is depended on in [Patchwork](https://github.com/ssbc/patchwork/) and [Patchfoo](https://github.com/ssbc/patchfoo). As an alternative library, [ssb-custom-uri](https://git.sr.ht/~soapdog/ssb-custom-uri) is used in [Patchfox](https://github.com/soapdog/patchfox/).
+[ssb-uri](https://github.com/fraction/ssb-uri) is one outcome of that discussion, and is referred to in the IANA page. The `ssb-uri` library is depended on in [Patchwork](https://github.com/ssbc/patchwork/). As an alternative library, [ssb-custom-uri](https://git.sr.ht/~soapdog/ssb-custom-uri) is used in [Patchfox](https://github.com/soapdog/patchfox/). [Patchfoo](https://git.scuttlebot.io/%25YAg1hicat%2B2GELjE2QJzDwlAWcx0ML%2B1sXEdsWwvdt8%3D.sha256) supports both `ssb-uri` and `ssb-custom-uri`.
 
 The specification in this document is compatible with `ssb-uri` while adding support for expressing more resources.
 
