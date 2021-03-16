@@ -1,6 +1,6 @@
 # SSB URI Specification
 
-Revision: 2021-03-10
+Revision: 2021-03-16
 
 Author: Andre Medeiros contact@staltz.com
 
@@ -24,11 +24,11 @@ The specification in this document is compatible with `ssb-uri` while adding sup
   - `ssb:message:sha256:<MSGID>`
   - `ssb:feed:ed25519:<FEEDID>`
   - `ssb:blob:sha256:<BLOBID>`
+  - `ssb:address:multiserver?multiserverAddress=<MSADDR>`
 - **Experimental SSB URIs**
-  - `ssb:?msaddr=<MSADDRESS>`
-  - `ssb:?msaddr=<MSADDRESS>&inviteType=room&inviteCode=<CODE>`
-  - `ssb:?msaddr=<MSADDRESS>&roomId=<RID>&userId=<UID>&alias=<A>&signature=<SIG>`
-  - `ssb:?action=http-auth-start&sid=<SID>&sc=<SC>`
+  - `ssb:?action=join-room&invite=<CODE>&multiserverAddress=<MSADDR>`
+  - `ssb:?action=consume-alias&alias=<A>&userId=<UID>&signature=<SIG>&roomId=<RID>&multiserverAddress=<MSADDR>`
+  - `ssb:?action=start-http-auth&sid=<SID>&sc=<SC>`
 
 ## Overview
 
@@ -54,9 +54,21 @@ ssb:feed:ed25519:-oaWWDs8g73EZFUMfW37R_ULtFEjwKN_DczvdYihjbU=
 ssb:blob:sha256:sbBmsB7XWvmIzkBzreYcuzPpLtpeCMDIs6n_OJGSC1U=
 ```
 
+**Multiserver address:**
+
+```
+ssb:address:multiserver?multiserverAddress=<MSADDR>
+```
+
+Where `<MSADDR>` is a [multiserver address](https://github.com/ssbc/multiserver-address) string, but [percent-encoded according to RFC3986 2.1](https://tools.ietf.org/html/rfc3986#section-2.1), for example:
+
+```
+ssb:address:multiserver?multiserverAddress=net%3Awx.larpa.net%3A8008~shs%3ADTNmX%2B4SjsgZ7xyDh5xxmNtFqa6pWi5Qtw7cE8aR9TQ%3D
+```
+
 ### Experimental SSB URIs
 
-These SSB URIs are free-form and allow developers to pass any parameters to SSB applications without requiring consensus among the SSB applications. These URIs have an *empty authority* component and *empty page* component but have a *non-empty query* component. The query parameters are the only mechanism through which information is conveyed. They satisfy the syntax below (any number of parameters allowed, but we show two, for illustratiion):
+These SSB URIs are free-form and allow developers to pass any parameters to SSB applications without requiring consensus among the SSB applications. These URIs have an *empty authority* component and *empty page* component but have a *non-empty query* component. The query parameters are the only mechanism through which information is conveyed. They satisfy the syntax below (any number of parameters allowed, but we show two, for illustration):
 
 ```
 ssb:?<key1>=<value1>
@@ -67,40 +79,31 @@ ssb:?<key1>=<value1>&<key2>=<value2>
 
 Experimental SSB URIs do not need to be included in this specification before they can be used, but we encourage developers to submit all known experimental SSB URIs depended by applications. This facilitates the future canonicalization of new SSB URIs. Please feel free to submit new entries here, as long as you know they are used in applications:
 
-**Multiserver address:**
+
+**Action to join a room:**
+
+Some experimental SSB URIs have the query `action` to describe intents to perform certain tasks in the SSB application. 
+
+A `action=join-room` experimental URI is used to refer to the consumption of a [Rooms 2](https://github.com/ssb-ngi-pointer/rooms2) invite code, syntax as follows, which includes a `multiserverAddress` query like the canonical multiserver address URI has too:
 
 ```
-ssb:?msaddr=<MSADDRESS>
+ssb:?action=join-room&invite=<CODE>&multiserverAddress=<MSADDR>`
 ```
 
-Where `<MSADDRESS>` is a [multiserver address](https://github.com/ssbc/multiserver-address) string, but [percent-encoded according to RFC3986 2.1](https://tools.ietf.org/html/rfc3986#section-2.1), for example:
+**Action to consume an alias:**
+
+A URI with query `action=consume-alias` allows us to refer to the processing [consuming a room alias](https://github.com/ssb-ngi-pointer/rooms2/blob/573cc4b3afc08a4eccaea530104524aa7f60af9f/docs/Alias/Alias%20consumption.md), syntax as follows:
 
 ```
-ssb:?msaddr=net%3Awx.larpa.net%3A8008~shs%3ADTNmX%2B4SjsgZ7xyDh5xxmNtFqa6pWi5Qtw7cE8aR9TQ%3D
+ssb:?action=consume-alias&alias=<A>&userId=<UID>&signature=<SIG>&multiserverAddress=<MSADDR>&roomId=<RID>
 ```
 
-**Multiserver address and a room2 invite:**
+**Action to start HTTP authentication:**
 
-Additional parameters can be added to the one mentioned above, to refer to a [Rooms 2](https://github.com/ssb-ngi-pointer/rooms2) invite code, syntax as follows:
-
-```
-ssb:?msaddr=<MSADDRESS>&inviteType=room&inviteCode=<CODE>
-```
-
-**Multiserver address and a room alias:**
-
-Additional parameters can be added after `msaddr` to specify a user [alias in a room server](https://github.com/ssb-ngi-pointer/rooms2/blob/573cc4b3afc08a4eccaea530104524aa7f60af9f/docs/Alias/Readme.md), syntax as follows:
+A URI with query `action=start-http-auth` is for initiating [Sign-in with SSB](https://github.com/ssb-ngi-pointer/rooms2/blob/573cc4b3afc08a4eccaea530104524aa7f60af9f/docs/Setup/Sign-in%20with%20SSB.md) (HTTP Authentication) with an SSB remote server. The syntax is as follows:
 
 ```
-ssb:?msaddr=<MSADDRESS>&roomId=<RID>&userId=<UID>&alias=<A>&signature=<SIG>
-```
-
-**Actions:**
-
-These are SSB URIs to describe intents to perform certain tasks in the SSB application. The only *action* URI known so far is for initiating "sign-in with SSB" (HTTP Authentication) with a server. The syntax is as follows:
-
-```
-ssb:?action=http-auth-start&sid=<SID>&sc=<SC>
+ssb:?action=start-http-auth&sid=<SID>&sc=<SC>
 ```
 
 ### Process to canonicalize SSB URIs
