@@ -1,6 +1,6 @@
 # SSB URI Specification
 
-Revision: 2021-03-10
+Revision: 2021-03-16
 
 Author: Andre Medeiros contact@staltz.com
 
@@ -24,10 +24,10 @@ The specification in this document is compatible with `ssb-uri` while adding sup
   - `ssb:message:sha256:<MSGID>`
   - `ssb:feed:ed25519:<FEEDID>`
   - `ssb:blob:sha256:<BLOBID>`
-  - `ssb:address:multiserver?multiserverAddress=<MSADDRESS>`
+  - `ssb:address:multiserver?multiserverAddress=<MSADDR>`
 - **Experimental SSB URIs**
-  - `ssb:?action=join-room&invite=<CODE>&multiserverAddress=<MSADDRESS>`
-  - `ssb:?action=consume-alias&alias=<A>&userId=<UID>&signature=<SIG>&roomId=<RID>&multiserverAddress=<MSADDRESS>`
+  - `ssb:?action=join-room&invite=<CODE>&multiserverAddress=<MSADDR>`
+  - `ssb:?action=consume-alias&alias=<A>&userId=<UID>&signature=<SIG>&roomId=<RID>&multiserverAddress=<MSADDR>`
   - `ssb:?action=start-http-auth&sid=<SID>&sc=<SC>`
 
 ## Overview
@@ -54,6 +54,18 @@ ssb:feed:ed25519:-oaWWDs8g73EZFUMfW37R_ULtFEjwKN_DczvdYihjbU=
 ssb:blob:sha256:sbBmsB7XWvmIzkBzreYcuzPpLtpeCMDIs6n_OJGSC1U=
 ```
 
+**Multiserver address:**
+
+```
+ssb:address:multiserver?multiserverAddress=<MSADDR>
+```
+
+Where `<MSADDR>` is a [multiserver address](https://github.com/ssbc/multiserver-address) string, but [percent-encoded according to RFC3986 2.1](https://tools.ietf.org/html/rfc3986#section-2.1), for example:
+
+```
+ssb:address:multiserver?multiserverAddress=net%3Awx.larpa.net%3A8008~shs%3ADTNmX%2B4SjsgZ7xyDh5xxmNtFqa6pWi5Qtw7cE8aR9TQ%3D
+```
+
 ### Experimental SSB URIs
 
 These SSB URIs are free-form and allow developers to pass any parameters to SSB applications without requiring consensus among the SSB applications. These URIs have an *empty authority* component and *empty page* component but have a *non-empty query* component. The query parameters are the only mechanism through which information is conveyed. They satisfy the syntax below (any number of parameters allowed, but we show two, for illustration):
@@ -67,26 +79,15 @@ ssb:?<key1>=<value1>&<key2>=<value2>
 
 Experimental SSB URIs do not need to be included in this specification before they can be used, but we encourage developers to submit all known experimental SSB URIs depended by applications. This facilitates the future canonicalization of new SSB URIs. Please feel free to submit new entries here, as long as you know they are used in applications:
 
-**Multiserver address:**
-
-```
-ssb:?msaddr=<MSADDRESS>
-```
-
-Where `<MSADDRESS>` is a [multiserver address](https://github.com/ssbc/multiserver-address) string, but [percent-encoded according to RFC3986 2.1](https://tools.ietf.org/html/rfc3986#section-2.1), for example:
-
-```
-ssb:?msaddr=net%3Awx.larpa.net%3A8008~shs%3ADTNmX%2B4SjsgZ7xyDh5xxmNtFqa6pWi5Qtw7cE8aR9TQ%3D
-```
 
 **Action to join a room:**
 
 Some experimental SSB URIs have the query `action` to describe intents to perform certain tasks in the SSB application. 
 
-Alongside a `msaddr` (like above), a `action=join-room` experimental URI is used to refer to the consumption of a [Rooms 2](https://github.com/ssb-ngi-pointer/rooms2) invite code, syntax as follows:
+A `action=join-room` experimental URI is used to refer to the consumption of a [Rooms 2](https://github.com/ssb-ngi-pointer/rooms2) invite code, syntax as follows, which includes a `multiserverAddress` query like the canonical multiserver address URI has too:
 
 ```
-ssb:?action=join-room&msaddr=<MSADDRESS>&invite=<CODE>`
+ssb:?action=join-room&invite=<CODE>&multiserverAddress=<MSADDR>`
 ```
 
 **Action to consume an alias:**
@@ -94,7 +95,7 @@ ssb:?action=join-room&msaddr=<MSADDRESS>&invite=<CODE>`
 A URI with query `action=consume-alias` allows us to refer to the processing [consuming a room alias](https://github.com/ssb-ngi-pointer/rooms2/blob/573cc4b3afc08a4eccaea530104524aa7f60af9f/docs/Alias/Alias%20consumption.md), syntax as follows:
 
 ```
-ssb:?action=consume-alias&alias=<A>&userId=<UID>&signature=<SIG>&msaddr=<MSADDRESS>&roomId=<RID>
+ssb:?action=consume-alias&alias=<A>&userId=<UID>&signature=<SIG>&multiserverAddress=<MSADDR>&roomId=<RID>
 ```
 
 **Action to start HTTP authentication:**
