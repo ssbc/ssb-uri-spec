@@ -26,9 +26,9 @@ The specification in this document is compatible with `ssb-uri` while adding sup
   - `ssb:blob:sha256:<BLOBID>`
   - `ssb:address:multiserver?multiserverAddress=<MSADDR>`
 - **Experimental SSB URIs**
-  - `ssb:?action=join-room&invite=<CODE>&multiserverAddress=<MSADDR>`
-  - `ssb:?action=consume-alias&alias=<A>&userId=<UID>&signature=<SIG>&roomId=<RID>&multiserverAddress=<MSADDR>`
-  - `ssb:?action=start-http-auth&sid=<SID>&sc=<SC>`
+  - `ssb:experimental?action=join-room&invite=<CODE>&multiserverAddress=<MSADDR>`
+  - `ssb:experimental?action=consume-alias&alias=<A>&userId=<UID>&signature=<SIG>&roomId=<RID>&multiserverAddress=<MSADDR>`
+  - `ssb:experimental?action=start-http-auth&sid=<SID>&sc=<SC>`
 
 ## Overview
 
@@ -68,11 +68,11 @@ ssb:address:multiserver?multiserverAddress=net%3Awx.larpa.net%3A8008~shs%3ADTNmX
 
 ### Experimental SSB URIs
 
-These SSB URIs are free-form and allow developers to pass any parameters to SSB applications without requiring consensus among the SSB applications. These URIs have an *empty authority* component and *empty page* component but have a *non-empty query* component. The query parameters are the only mechanism through which information is conveyed. They satisfy the syntax below (any number of parameters allowed, but we show two, for illustration):
+These SSB URIs are free-form and allow developers to pass any parameters to SSB applications without requiring consensus among the SSB applications. These URIs have an *empty authority* component and path component always matching `experimental` (this is to support Firefox's handling of custom schemes) but have a *non-empty query* component. The query parameters are the only mechanism through which information is conveyed. They satisfy the syntax below (any number of parameters allowed, but we show two, for illustration):
 
 ```
-ssb:?<key1>=<value1>
-ssb:?<key1>=<value1>&<key2>=<value2>
+ssb:experimental?<key1>=<value1>
+ssb:experimental?<key1>=<value1>&<key2>=<value2>
 ```
 
 #### Known experimental SSB URIs
@@ -87,7 +87,7 @@ Some experimental SSB URIs have the query `action` to describe intents to perfor
 A `action=join-room` experimental URI is used to refer to the consumption of a [Rooms 2](https://github.com/ssb-ngi-pointer/rooms2) invite code, syntax as follows, which includes a `multiserverAddress` query like the canonical multiserver address URI has too:
 
 ```
-ssb:?action=join-room&invite=<CODE>&multiserverAddress=<MSADDR>`
+ssb:experimental?action=join-room&invite=<CODE>&multiserverAddress=<MSADDR>`
 ```
 
 **Action to consume an alias:**
@@ -95,7 +95,7 @@ ssb:?action=join-room&invite=<CODE>&multiserverAddress=<MSADDR>`
 A URI with query `action=consume-alias` allows us to refer to the processing [consuming a room alias](https://github.com/ssb-ngi-pointer/rooms2/blob/573cc4b3afc08a4eccaea530104524aa7f60af9f/docs/Alias/Alias%20consumption.md), syntax as follows:
 
 ```
-ssb:?action=consume-alias&alias=<A>&userId=<UID>&signature=<SIG>&multiserverAddress=<MSADDR>&roomId=<RID>
+ssb:experimental?action=consume-alias&alias=<A>&userId=<UID>&signature=<SIG>&multiserverAddress=<MSADDR>&roomId=<RID>
 ```
 
 **Action to start HTTP authentication:**
@@ -103,7 +103,7 @@ ssb:?action=consume-alias&alias=<A>&userId=<UID>&signature=<SIG>&multiserverAddr
 A URI with query `action=start-http-auth` is for initiating [Sign-in with SSB](https://github.com/ssb-ngi-pointer/rooms2/blob/573cc4b3afc08a4eccaea530104524aa7f60af9f/docs/Setup/Sign-in%20with%20SSB.md) (HTTP Authentication) with an SSB remote server. The syntax is as follows:
 
 ```
-ssb:?action=start-http-auth&sid=<SID>&sc=<SC>
+ssb:experimental?action=start-http-auth&sid=<SID>&sc=<SC>
 ```
 
 ### Process to canonicalize SSB URIs
@@ -123,7 +123,7 @@ delimiter -> ":"
 
 body -> (ref):? (queries):?
 
-ref -> type delimiter alg (delimiter value):?
+ref -> type (delimiter alg):? (delimiter value):?
 
 queries -> "?" (query):+
 
@@ -133,7 +133,7 @@ queryKey -> [a-zA-Z] ([^=]):*
 
 queryVal -> [a-zA-Z0-9] ([^&]):*
 
-type -> "message" | "feed" | "blob" | "address"
+type -> "message" | "feed" | "blob" | "address" | "experimental"
 
 alg -> "sha256" | "ed25519" | "multiserver"
 
