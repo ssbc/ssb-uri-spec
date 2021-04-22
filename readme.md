@@ -26,7 +26,7 @@ The specification in this document is compatible with `ssb-uri` while adding sup
   - `ssb:blob:sha256:<BLOBID>`
   - `ssb:address:multiserver?multiserverAddress=<MSADDR>`
 - **Experimental SSB URIs**
-  - `ssb:experimental?action=join-room&invite=<CODE>&multiserverAddress=<MSADDR>`
+  - `ssb:experimental?action=claim-http-invite&invite=<CODE>&multiserverAddress=<MSADDR>`
   - `ssb:experimental?action=consume-alias&alias=<A>&userId=<UID>&signature=<SIG>&roomId=<RID>&multiserverAddress=<MSADDR>`
   - `ssb:experimental?action=start-http-auth&sid=<SID>&sc=<SC>`
 
@@ -82,12 +82,12 @@ Experimental SSB URIs do not need to be included in this specification before th
 
 **Action to join a room:**
 
-Some experimental SSB URIs have the query `action` to describe intents to perform certain tasks in the SSB application. 
+Some experimental SSB URIs have the query `action` to describe intents to perform certain tasks in the SSB application.
 
-A `action=join-room` experimental URI is used to refer to the consumption of a [Rooms 2](https://github.com/ssb-ngi-pointer/rooms2) invite code, syntax as follows, which includes a `multiserverAddress` query like the canonical multiserver address URI has too:
+A `action=claim-http-invite` experimental URI is used to refer to the consumption of a [Rooms 2](https://github.com/ssb-ngi-pointer/rooms2) invite code, syntax as follows, which includes a `multiserverAddress` query like the canonical multiserver address URI has too:
 
 ```
-ssb:experimental?action=join-room&invite=<CODE>&multiserverAddress=<MSADDR>`
+ssb:experimental?action=claim-http-invite&invite=<CODE>&multiserverAddress=<MSADDR>`
 ```
 
 **Action to consume an alias:**
