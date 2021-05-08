@@ -1,6 +1,6 @@
 # SSB URI Specification
 
-Revision: 2021-03-16
+Revision: 2021-05-08
 
 Author: Andre Medeiros contact@staltz.com
 
@@ -9,6 +9,10 @@ License: This work is licensed under a Creative Commons Attribution 4.0 Internat
 ## Abstract
 
 The `ssb` scheme is registered as [provisional under the IANA](https://www.iana.org/assignments/uri-schemes/prov/ssb), but its format is not yet specified accessibly and clearly. This documents aims at providing the first specification of SSB URIs, as they are used in existing applications and will be adopted increasingly in more use cases.
+
+## Terminology
+
+The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD", "SHOULD NOT", "RECOMMENDED", "MAY", and "OPTIONAL" in this document are to be interpreted as described in [RFC 2119](https://tools.ietf.org/html/rfc2119).
 
 ## Prior work
 
@@ -21,10 +25,10 @@ The specification in this document is compatible with `ssb-uri` while adding sup
 ## List
 
 - **Canonical SSB URIs**
-  - `ssb:message:sha256:<MSGID>`
-  - `ssb:feed:ed25519:<FEEDID>`
-  - `ssb:blob:sha256:<BLOBID>`
-  - `ssb:address:multiserver?multiserverAddress=<MSADDR>`
+  - `ssb:message/sha256/<MSGID>`
+  - `ssb:feed/ed25519/<FEEDID>`
+  - `ssb:blob/sha256/<BLOBID>`
+  - `ssb:address/multiserver?multiserverAddress=<MSADDR>`
 - **Experimental SSB URIs**
   - `ssb:experimental?action=claim-http-invite&invite=<CODE>&multiserverAddress=<MSADDR>`
   - `ssb:experimental?action=consume-alias&alias=<A>&userId=<UID>&signature=<SIG>&roomId=<RID>&multiserverAddress=<MSADDR>`
@@ -36,12 +40,12 @@ There are two categories of SSB URIs: **Canonical** and **Experimental**. The co
 
 ### Canonical SSB URIs
 
-These SSB URIs are to be considered stable and universally acceptable by all SSB applications that support SSB URIs. They comprise the current scope of `ssb-uri` (as of March 2021), and utilize the path component to specify "refs" such as SSB messages, feeds, and blobs, respectively, with the following syntax:
+These SSB URIs are to be considered stable and universally acceptable by all SSB applications that support SSB URIs. They comprise the current scope of `ssb-uri` (as of March 2021), and utilize the path component to specify "refs", i.e. identifiers for resources. SSB messages, feeds, and blobs **SHOULD** follow the respective syntaxes:
 
 ```
-ssb:message:sha256:<MSGID>
-ssb:feed:ed25519:<FEEDID>
-ssb:blob:sha256:<BLOBID>
+ssb:message/sha256/<MSGID>
+ssb:feed/ed25519/<FEEDID>
+ssb:blob/sha256/<BLOBID>
 ```
 
 Where `<MSGID>`, `<FEEDID>`, `<BLOBID>` are *URI-safe Base64 encoded* strings that identify those refs. URI-safe Base64 is equivalent to Base64 where `+` characters are replaced with `-`, and `/` characters are replaced with `_`.
@@ -49,21 +53,32 @@ Where `<MSGID>`, `<FEEDID>`, `<BLOBID>` are *URI-safe Base64 encoded* strings th
 **Examples:**
 
 ```
-ssb:message:sha256:g3hPVPDEO1Aj_uPl0-J2NlhFB2bbFLIHlty-YuqFZ3w=
-ssb:feed:ed25519:-oaWWDs8g73EZFUMfW37R_ULtFEjwKN_DczvdYihjbU=
-ssb:blob:sha256:sbBmsB7XWvmIzkBzreYcuzPpLtpeCMDIs6n_OJGSC1U=
+ssb:message/sha256/g3hPVPDEO1Aj_uPl0-J2NlhFB2bbFLIHlty-YuqFZ3w=
+ssb:feed/ed25519/-oaWWDs8g73EZFUMfW37R_ULtFEjwKN_DczvdYihjbU=
+ssb:blob/sha256/sbBmsB7XWvmIzkBzreYcuzPpLtpeCMDIs6n_OJGSC1U=
 ```
 
 **Multiserver address:**
 
 ```
-ssb:address:multiserver?multiserverAddress=<MSADDR>
+ssb:address/multiserver?multiserverAddress=<MSADDR>
 ```
 
 Where `<MSADDR>` is a [multiserver address](https://github.com/ssbc/multiserver-address) string, but [percent-encoded according to RFC3986 2.1](https://tools.ietf.org/html/rfc3986#section-2.1), for example:
 
 ```
-ssb:address:multiserver?multiserverAddress=net%3Awx.larpa.net%3A8008~shs%3ADTNmX%2B4SjsgZ7xyDh5xxmNtFqa6pWi5Qtw7cE8aR9TQ%3D
+ssb:address/multiserver?multiserverAddress=net%3Awx.larpa.net%3A8008~shs%3ADTNmX%2B4SjsgZ7xyDh5xxmNtFqa6pWi5Qtw7cE8aR9TQ%3D
+```
+
+### Colon-separated canonical SSB URIs
+
+Canonical SSB URIs **SHOULD** use `/` to separate the parts of the path component, but they **MAY** also use `:` to separate the parts. The following syntax is acceptable (and is currently what `ssb-uri` utilizes, exclusively):
+
+```
+ssb:message:sha256:<MSGID>
+ssb:feed:ed25519:<FEEDID>
+ssb:blob:sha256:<BLOBID>
+ssb:address:multiserver?multiserverAddress=<MSADDR>
 ```
 
 ### Experimental SSB URIs
@@ -121,9 +136,11 @@ scheme -> "ssb"
 
 delimiter -> ":"
 
+separator -> [:/]
+
 body -> (ref):? (queries):?
 
-ref -> type (delimiter alg):? (delimiter value):?
+ref -> type (separator alg):? (separator value):?
 
 queries -> "?" (query):+
 
