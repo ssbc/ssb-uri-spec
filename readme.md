@@ -18,7 +18,7 @@ The key words "MUST", "MUST NOT", "REQUIRED", "SHALL", "SHALL NOT", "SHOULD", "S
 
 There is a thread on SSB, `%g3hPVPDEO1Aj/uPl0+J2NlhFB2bbFLIHlty+YuqFZ3w=.sha256`, where several participants gave their thoughts on the design of the SSB URI format, with several proposals put into consideration. The format of Query-only URIs were inspired by [Magnet URIs](https://www.iana.org/assignments/uri-schemes/prov/magnet).
 
-[ssb-uri](https://github.com/fraction/ssb-uri) is one outcome of that discussion, and is referred to in the IANA page. The `ssb-uri` library is depended on in [Patchwork](https://github.com/ssbc/patchwork/). As an alternative library, [ssb-custom-uri](https://git.sr.ht/~soapdog/ssb-custom-uri) is used in [Patchfox](https://github.com/soapdog/patchfox/). [Patchfoo](https://git.scuttlebot.io/%25YAg1hicat%2B2GELjE2QJzDwlAWcx0ML%2B1sXEdsWwvdt8%3D.sha256) supports both `ssb-uri` and `ssb-custom-uri`.
+[ssb-uri](https://github.com/fraction/ssb-uri) is one outcome of that discussion, and is referred to in the IANA page. The `ssb-uri` library is depended on in [Patchwork](https://github.com/ssbc/patchwork/). As an alternative library, [ssb-custom-uri](https://git.sr.ht/~soapdog/ssb-custom-uri) is used in [Patchfox](https://github.com/soapdog/patchfox/). [Patchfoo](https://git.scuttlebot.io/%25YAg1hicat%2B2GELjE2QJzDwlAWcx0ML%2B1sXEdsWwvdt8%3D.sha256) supports both `ssb-uri` and `ssb-custom-uri`. [Manyverse](https://manyver.se) supports the URIs in this specification via the library [ssb-uri2](https://github.com/staltz/ssb-uri2).
 
 The specification in this document is compatible with `ssb-uri` while adding support for expressing more resources.
 
