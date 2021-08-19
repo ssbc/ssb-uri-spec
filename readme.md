@@ -26,6 +26,7 @@ The specification in this document is compatible with `ssb-uri` while adding sup
 
 - **Canonical SSB URIs**
   - `ssb:message/sha256/<MSGID>`
+  - `ssb:message/bendybutt-v1/<MSGID>`
   - `ssb:feed/ed25519/<FEEDID>`
   - `ssb:feed/bendybutt-v1/<FEEDID>`
   - `ssb:blob/sha256/<BLOBID>`
@@ -45,6 +46,7 @@ These SSB URIs are to be considered stable and universally acceptable by all SSB
 
 ```
 ssb:message/sha256/<MSGID>
+ssb:message/bendybutt-v1/<MSGID>
 ssb:feed/ed25519/<FEEDID>
 ssb:feed/bendybutt-v1/<FEEDID>
 ssb:blob/sha256/<BLOBID>
@@ -56,6 +58,7 @@ Where `<MSGID>`, `<FEEDID>`, `<BLOBID>` are *URI-safe Base64 encoded* strings th
 
 ```
 ssb:message/sha256/g3hPVPDEO1Aj_uPl0-J2NlhFB2bbFLIHlty-YuqFZ3w=
+ssb:message/bendybutt-v1/PR2-btDEO1AjXuPl0TJ2N_hFB2bbFLIHlty0VF1ncty=
 ssb:feed/ed25519/-oaWWDs8g73EZFUMfW37R_ULtFEjwKN_DczvdYihjbU=
 ssb:feed/bendybutt-v1/APaWWDs8g73EZFUMfW37RBULtFEjwKNbDczvdYiRXtA=
 ssb:blob/sha256/sbBmsB7XWvmIzkBzreYcuzPpLtpeCMDIs6n_OJGSC1U=
@@ -79,6 +82,7 @@ Canonical SSB URIs **SHOULD** use `/` to separate the parts of the path componen
 
 ```
 ssb:message:sha256:<MSGID>
+ssb:message:bendybutt-v1:<MSGID>
 ssb:feed:ed25519:<FEEDID>
 ssb:feed:bendybutt-v1:<FEEDID>
 ssb:blob:sha256:<BLOBID>
