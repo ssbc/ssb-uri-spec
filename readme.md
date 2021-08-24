@@ -31,6 +31,8 @@ The specification in this document is compatible with `ssb-uri` while adding sup
   - `ssb:feed/bendybutt-v1/<FEEDID>`
   - `ssb:blob/sha256/<BLOBID>`
   - `ssb:address/multiserver?multiserverAddress=<MSADDR>`
+  - `ssb:encryption-key/box2-dm-dh/<KEY>`
+  - `ssb:identity/po-box/<KEY>`
 - **Experimental SSB URIs**
   - `ssb:experimental?action=claim-http-invite&invite=<CODE>&multiserverAddress=<MSADDR>`
   - `ssb:experimental?action=consume-alias&alias=<A>&userId=<UID>&signature=<SIG>&roomId=<RID>&multiserverAddress=<MSADDR>`
@@ -63,6 +65,13 @@ ssb:feed/ed25519/-oaWWDs8g73EZFUMfW37R_ULtFEjwKN_DczvdYihjbU=
 ssb:feed/bendybutt-v1/APaWWDs8g73EZFUMfW37RBULtFEjwKNbDczvdYiRXtA=
 ssb:blob/sha256/sbBmsB7XWvmIzkBzreYcuzPpLtpeCMDIs6n_OJGSC1U=
 ```
+
+There are also new concepts related to [Private Groups](https://github.com/ssbc/private-group-spec) which need identifiers, such as:
+  
+- `ssb:encryption-key/box2-dm-dh/<KEY>`
+- `ssb:identity/po-box/<KEY>`
+
+Where `<KEY>` are *URI-safe Base64 encoded* strings, similar to the previous canonical SSB URIs.
 
 **Multiserver address:**
 
@@ -158,9 +167,9 @@ queryKey -> [a-zA-Z] ([^=]):*
 
 queryVal -> [a-zA-Z0-9] ([^&]):*
 
-type -> "message" | "feed" | "blob" | "address" | "experimental"
+type -> "message" | "feed" | "blob" | "address" | "experimental" | "encryption-key" | "identity"
 
-alg -> "sha256" | "ed25519" | "multiserver" | "bendybutt-v1"
+alg -> "sha256" | "ed25519" | "multiserver" | "bendybutt-v1" | "box2-dm-dh" | "po-box"
 
 value -> ([0-9a-zA-Z\-\_\=]):+
 ```
