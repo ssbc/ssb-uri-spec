@@ -1,3 +1,9 @@
+<!--
+SPDX-FileCopyrightText: 2021 Andre 'Staltz' Medeiros
+
+SPDX-License-Identifier: CC-BY-4.0
+-->
+
 ## Radicle URNs
 
 https://docs.radicle.xyz/docs/understanding-radicle/how-it-works#radicle-urns

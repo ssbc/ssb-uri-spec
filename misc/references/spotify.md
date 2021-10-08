@@ -1,3 +1,9 @@
+<!--
+SPDX-FileCopyrightText: 2021 Andre 'Staltz' Medeiros
+
+SPDX-License-Identifier: CC-BY-4.0
+-->
+
 ## Spotify URIs
 
 https://community.spotify.com/t5/Desktop-Windows/URI-Codes/td-p/4479486

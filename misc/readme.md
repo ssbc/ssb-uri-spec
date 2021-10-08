@@ -1,3 +1,9 @@
+<!--
+SPDX-FileCopyrightText: 2021 Andre 'Staltz' Medeiros
+
+SPDX-License-Identifier: CC-BY-4.0
+-->
+
 - Proposals
   - [SSB URI plus query-only](proposals/ssb-uri-plus-query-only.md)
   - [SSB URI with query-only](proposals/ssb-uri-query-only.md)

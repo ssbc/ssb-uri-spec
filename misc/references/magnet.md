@@ -1,3 +1,9 @@
+<!--
+SPDX-FileCopyrightText: 2021 Andre 'Staltz' Medeiros
+
+SPDX-License-Identifier: CC-BY-4.0
+-->
+
 ## Magnet URIs
 
 http://magnet-uri.sourceforge.net/magnet-draft-overview.txt

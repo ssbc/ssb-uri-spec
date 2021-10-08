@@ -1,3 +1,9 @@
+<!--
+SPDX-FileCopyrightText: 2021 Andre 'Staltz' Medeiros
+
+SPDX-License-Identifier: CC-BY-4.0
+-->
+
 ## ssb-custom-uri
 
 https://git.sr.ht/~soapdog/ssb-custom-uri
