@@ -6,7 +6,7 @@ SPDX-License-Identifier: CC-BY-4.0
 
 # SSB URI Specification
 
-Revision: 2021-05-08
+Revision: 2022-01-01
 
 Author: Andre Medeiros contact@staltz.com
 
@@ -41,6 +41,7 @@ The specification in this document is compatible with `ssb-uri` while adding sup
   - `ssb:address/multiserver?multiserverAddress=<MSADDR>`
   - `ssb:encryption-key/box2-dm-dh/<KEY>`
   - `ssb:identity/po-box/<KEY>`
+  - `ssb:identity/fusion/<KEY>`
 - **Experimental SSB URIs**
   - `ssb:experimental?action=claim-http-invite&invite=<CODE>&multiserverAddress=<MSADDR>`
   - `ssb:experimental?action=consume-alias&alias=<A>&userId=<UID>&signature=<SIG>&roomId=<RID>&multiserverAddress=<MSADDR>`
@@ -180,7 +181,7 @@ queryVal -> [a-zA-Z0-9] ([^&]):*
 
 type -> "message" | "feed" | "blob" | "address" | "experimental" | "encryption-key" | "identity"
 
-alg -> "sha256" | "ed25519" | "multiserver" | "bendybutt-v1" | "gabbygrove-v1" | "box2-dm-dh" | "po-box"
+alg -> "sha256" | "ed25519" | "multiserver" | "bendybutt-v1" | "gabbygrove-v1" | "box2-dm-dh" | "po-box" | "fusion"
 
 value -> ([0-9a-zA-Z\-\_\=]):+
 ```
