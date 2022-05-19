@@ -185,7 +185,7 @@ queryVal -> [a-zA-Z0-9] ([^&]):*
 
 type -> "message" | "feed" | "blob" | "address" | "experimental" | "encryption-key" | "identity"
 
-alg -> "sha256" | "ed25519" | "multiserver" | "bendybutt-v1" | "gabbygrove-v1" | "box2-dm-dh" | "po-box" | "fusion"
+alg -> "sha256" | "ed25519" | "multiserver" | "bendybutt-v1" | "gabbygrove-v1" | "buttwoo-v1" | "box2-dm-dh" | "po-box" | "fusion"
 
 value -> ([0-9a-zA-Z\-\_\=]):+
 ```
