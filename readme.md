@@ -6,7 +6,7 @@ SPDX-License-Identifier: CC-BY-4.0
 
 # SSB URI Specification
 
-Revision: 2022-01-01
+Revision: 2022-05-19
 
 Author: Andre Medeiros contact@staltz.com
 
@@ -34,9 +34,11 @@ The specification in this document is compatible with `ssb-uri` while adding sup
   - `ssb:message/sha256/<MSGID>`
   - `ssb:message/bendybutt-v1/<MSGID>`
   - `ssb:message/gabbygrove-v1/<MSGID>`
+  - `ssb:message/buttwoo-v1/<MSGID>`
   - `ssb:feed/ed25519/<FEEDID>`
   - `ssb:feed/bendybutt-v1/<FEEDID>`
   - `ssb:feed/gabbygrove-v1/<FEEDID>`
+  - `ssb:feed/buttwoo-v1/<FEEDID>`
   - `ssb:blob/sha256/<BLOBID>`
   - `ssb:address/multiserver?multiserverAddress=<MSADDR>`
   - `ssb:encryption-key/box2-dm-dh/<KEY>`
@@ -59,9 +61,11 @@ These SSB URIs are to be considered stable and universally acceptable by all SSB
 ssb:message/sha256/<MSGID>
 ssb:message/bendybutt-v1/<MSGID>
 ssb:message/gabbygrove-v1/<MSGID>
+ssb:message/buttwoo-v1/<MSGID>
 ssb:feed/ed25519/<FEEDID>
 ssb:feed/bendybutt-v1/<FEEDID>
 ssb:feed/gabbygrove-v1/<FEEDID>
+ssb:feed/buttwoo-v1/<MSGID>
 ssb:blob/sha256/<BLOBID>
 ```
 
@@ -181,7 +185,7 @@ queryVal -> [a-zA-Z0-9] ([^&]):*
 
 type -> "message" | "feed" | "blob" | "address" | "experimental" | "encryption-key" | "identity"
 
-alg -> "sha256" | "ed25519" | "multiserver" | "bendybutt-v1" | "gabbygrove-v1" | "box2-dm-dh" | "po-box" | "fusion"
+alg -> "sha256" | "ed25519" | "multiserver" | "bendybutt-v1" | "gabbygrove-v1" | "buttwoo-v1" | "box2-dm-dh" | "po-box" | "fusion"
 
 value -> ([0-9a-zA-Z\-\_\=]):+
 ```
