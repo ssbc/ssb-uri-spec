@@ -39,6 +39,7 @@ The specification in this document is compatible with `ssb-uri` while adding sup
   - `ssb:feed/bendybutt-v1/<FEEDID>`
   - `ssb:feed/gabbygrove-v1/<FEEDID>`
   - `ssb:feed/buttwoo-v1/<FEEDID>`
+  - `ssb:feed/buttwoo-v1/<FEEDID>/<PARENTMSGID>`
   - `ssb:blob/sha256/<BLOBID>`
   - `ssb:address/multiserver?multiserverAddress=<MSADDR>`
   - `ssb:encryption-key/box2-dm-dh/<KEY>`
@@ -66,10 +67,13 @@ ssb:feed/ed25519/<FEEDID>
 ssb:feed/bendybutt-v1/<FEEDID>
 ssb:feed/gabbygrove-v1/<FEEDID>
 ssb:feed/buttwoo-v1/<MSGID>
+ssb:feed/buttwoo-v1/<MSGID>/<PARENTMSGID>
 ssb:blob/sha256/<BLOBID>
 ```
 
 Where `<MSGID>`, `<FEEDID>`, `<BLOBID>` are *URI-safe Base64 encoded* strings that identify those refs. URI-safe Base64 is equivalent to Base64 where `+` characters are replaced with `-`, and `/` characters are replaced with `_`.
+
+In the special case of `ssb:feed/buttwoo-v1/<MSGID>/<PARENTMSGID>`, the `<PARENTMSGID>` is the URI-safe Base64 encoded data of a buttwoo-v1 message URI (i.e. `<MSGID>` from `ssb:message/buttwoo-v1/<MSGID>`).
 
 **Examples:**
 
@@ -83,7 +87,7 @@ ssb:blob/sha256/sbBmsB7XWvmIzkBzreYcuzPpLtpeCMDIs6n_OJGSC1U=
 ```
 
 There are also new concepts related to [Private Groups](https://github.com/ssbc/private-group-spec) which need identifiers, such as:
-  
+
 - `ssb:encryption-key/box2-dm-dh/<KEY>`
 - `ssb:identity/po-box/<KEY>`
 
@@ -171,21 +175,23 @@ delimiter -> ":"
 
 separator -> [:/]
 
-body -> (ref):? (queries):?
+body -> parts1 (queries):? | parts3 (queries):? | parts4 (queries):?
 
-ref -> type (separator alg):? (separator value):?
+parts1 -> type1
+parts3 -> type3 separator alg3 separator value
+parts4 -> type4 separator alg4 separator value separator value
 
 queries -> "?" (query):+
-
 query -> queryKey "=" queryVal
-
 queryKey -> [a-zA-Z] ([^=]):*
-
 queryVal -> [a-zA-Z0-9] ([^&]):*
 
-type -> "message" | "feed" | "blob" | "address" | "experimental" | "encryption-key" | "identity"
+type1 -> "experimental"
+type3 -> "message" | "feed" | "blob" | "address" | "encryption-key" | "identity"
+type4 -> "feed"
 
-alg -> "sha256" | "ed25519" | "multiserver" | "bendybutt-v1" | "gabbygrove-v1" | "buttwoo-v1" | "box2-dm-dh" | "po-box" | "fusion"
+alg3 -> "sha256" | "ed25519" | "multiserver" | "bendybutt-v1" | "gabbygrove-v1" | "buttwoo-v1" | "box2-dm-dh" | "po-box" | "fusion"
+alg4 -> "buttwoo-v1"
 
 value -> ([0-9a-zA-Z\-\_\=]):+
 ```
