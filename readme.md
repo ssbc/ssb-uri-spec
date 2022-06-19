@@ -66,8 +66,8 @@ ssb:message/buttwoo-v1/<MSGID>
 ssb:feed/ed25519/<FEEDID>
 ssb:feed/bendybutt-v1/<FEEDID>
 ssb:feed/gabbygrove-v1/<FEEDID>
-ssb:feed/buttwoo-v1/<MSGID>
-ssb:feed/buttwoo-v1/<MSGID>/<PARENTMSGID>
+ssb:feed/buttwoo-v1/<FEEDID>
+ssb:feed/buttwoo-v1/<FEEDID>/<PARENTMSGID>
 ssb:blob/sha256/<BLOBID>
 ```
 
