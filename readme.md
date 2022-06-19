@@ -73,7 +73,7 @@ ssb:blob/sha256/<BLOBID>
 
 Where `<MSGID>`, `<FEEDID>`, `<BLOBID>` are *URI-safe Base64 encoded* strings that identify those refs. URI-safe Base64 is equivalent to Base64 where `+` characters are replaced with `-`, and `/` characters are replaced with `_`.
 
-In the special case of `ssb:feed/buttwoo-v1/<MSGID>/<PARENTMSGID>`, the `<PARENTMSGID>` is the URI-safe Base64 encoded data of a buttwoo-v1 message URI (i.e. `<MSGID>` from `ssb:message/buttwoo-v1/<MSGID>`).
+In the special case of `ssb:feed/buttwoo-v1/<FEEDID>/<PARENTMSGID>`, the `<PARENTMSGID>` is the URI-safe Base64 encoded data of a buttwoo-v1 message URI (i.e. `<MSGID>` from `ssb:message/buttwoo-v1/<MSGID>`).
 
 **Examples:**
 
