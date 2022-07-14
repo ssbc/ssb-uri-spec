@@ -6,7 +6,7 @@ SPDX-License-Identifier: CC-BY-4.0
 
 # SSB URI Specification
 
-Version: 1.0
+Version: 1.1
 
 Author: Andre 'Staltz' Medeiros <contact@staltz.com>
 
