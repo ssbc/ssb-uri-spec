@@ -1,14 +1,14 @@
 <!--
-SPDX-FileCopyrightText: 2021 Andre 'Staltz' Medeiros
+SPDX-FileCopyrightText: 2021-2022 Andre 'Staltz' Medeiros
 
 SPDX-License-Identifier: CC-BY-4.0
 -->
 
 # SSB URI Specification
 
-Revision: 2022-05-19
+Version: 1.0
 
-Author: Andre Medeiros contact@staltz.com
+Author: Andre 'Staltz' Medeiros <contact@staltz.com>
 
 License: This work is licensed under a Creative Commons Attribution 4.0 International License.
 
