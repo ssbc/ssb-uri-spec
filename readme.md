@@ -31,16 +31,16 @@ The specification in this document is compatible with `ssb-uri` while adding sup
 ## List
 
 - **Canonical SSB URIs**
-  - `ssb:message/sha256/<MSGID>`
+  - `ssb:message/classic/<MSGID>`
   - `ssb:message/bendybutt-v1/<MSGID>`
   - `ssb:message/gabbygrove-v1/<MSGID>`
   - `ssb:message/buttwoo-v1/<MSGID>`
-  - `ssb:feed/ed25519/<FEEDID>`
+  - `ssb:feed/classic/<FEEDID>`
   - `ssb:feed/bendybutt-v1/<FEEDID>`
   - `ssb:feed/gabbygrove-v1/<FEEDID>`
   - `ssb:feed/buttwoo-v1/<FEEDID>`
   - `ssb:feed/buttwoo-v1/<FEEDID>/<PARENTMSGID>`
-  - `ssb:blob/sha256/<BLOBID>`
+  - `ssb:blob/classic/<BLOBID>`
   - `ssb:address/multiserver?multiserverAddress=<MSADDR>`
   - `ssb:encryption-key/box2-dm-dh/<KEY>`
   - `ssb:identity/po-box/<KEY>`
@@ -49,26 +49,32 @@ The specification in this document is compatible with `ssb-uri` while adding sup
   - `ssb:experimental?action=claim-http-invite&invite=<CODE>&multiserverAddress=<MSADDR>`
   - `ssb:experimental?action=consume-alias&alias=<A>&userId=<UID>&signature=<SIG>&roomId=<RID>&multiserverAddress=<MSADDR>`
   - `ssb:experimental?action=start-http-auth&sid=<SID>&sc=<SC>`
+- **Deprecated SSB URIs**
+  - `ssb:message/sha256/<MSGID>`
+  - `ssb:feed/ed25519/<FEEDID>`
+  - `ssb:blob/sha256/<BLOBID>`
 
 ## Overview
 
-There are two categories of SSB URIs: **Canonical** and **Experimental**. The conceptual difference between these two is that canonical SSB URIs make use of the **path component** in the URI to specify the resource, while experimental SSB URIs use *only* the **query component** to specify the resource.
+There are two main categories of SSB URIs: **Canonical** and **Experimental**. The conceptual difference between these two is that canonical SSB URIs make use of the **path component** in the URI to specify the resource, while experimental SSB URIs use *only* the **query component** to specify the resource.
+
+The third category, **Deprecated**, is used to denote canonical SSB URIs that MUST still be supported by application, but SHOULD be avoided whenever possible.
 
 ### Canonical SSB URIs
 
-These SSB URIs are to be considered stable and universally acceptable by all SSB applications that support SSB URIs. They comprise the current scope of `ssb-uri` (as of March 2021), and utilize the path component to specify "refs", i.e. identifiers for resources. SSB messages, feeds, and blobs **SHOULD** follow the respective syntaxes:
+These SSB URIs are to be considered stable and universally acceptable by all SSB applications that support SSB URIs. They utilize the path component to specify "refs", i.e. identifiers for resources. SSB messages, feeds, and blobs **SHOULD** follow the respective syntaxes:
 
 ```
-ssb:message/sha256/<MSGID>
+ssb:message/classic/<MSGID>
 ssb:message/bendybutt-v1/<MSGID>
 ssb:message/gabbygrove-v1/<MSGID>
 ssb:message/buttwoo-v1/<MSGID>
-ssb:feed/ed25519/<FEEDID>
+ssb:feed/classic/<FEEDID>
 ssb:feed/bendybutt-v1/<FEEDID>
 ssb:feed/gabbygrove-v1/<FEEDID>
 ssb:feed/buttwoo-v1/<FEEDID>
 ssb:feed/buttwoo-v1/<FEEDID>/<PARENTMSGID>
-ssb:blob/sha256/<BLOBID>
+ssb:blob/classic/<BLOBID>
 ```
 
 Where `<MSGID>`, `<FEEDID>`, `<BLOBID>` are *URI-safe Base64 encoded* strings that identify those refs. URI-safe Base64 is equivalent to Base64 where `+` characters are replaced with `-`, and `/` characters are replaced with `_`.
@@ -78,12 +84,12 @@ In the special case of `ssb:feed/buttwoo-v1/<FEEDID>/<PARENTMSGID>`, the `<PAREN
 **Examples:**
 
 ```
-ssb:message/sha256/g3hPVPDEO1Aj_uPl0-J2NlhFB2bbFLIHlty-YuqFZ3w=
+ssb:message/classic/g3hPVPDEO1Aj_uPl0-J2NlhFB2bbFLIHlty-YuqFZ3w=
 ssb:message/bendybutt-v1/PR2-btDEO1AjXuPl0TJ2N_hFB2bbFLIHlty0VF1ncty=
-ssb:feed/ed25519/-oaWWDs8g73EZFUMfW37R_ULtFEjwKN_DczvdYihjbU=
+ssb:feed/classic/-oaWWDs8g73EZFUMfW37R_ULtFEjwKN_DczvdYihjbU=
 ssb:feed/bendybutt-v1/APaWWDs8g73EZFUMfW37RBULtFEjwKNbDczvdYiRXtA=
 ssb:feed/gabbygrove-v1/FY5OG311W4j_KPh8H9B2MZt4WSziy_p-ABkKERJdujQ=
-ssb:blob/sha256/sbBmsB7XWvmIzkBzreYcuzPpLtpeCMDIs6n_OJGSC1U=
+ssb:blob/classic/sbBmsB7XWvmIzkBzreYcuzPpLtpeCMDIs6n_OJGSC1U=
 ```
 
 There are also new concepts related to [Private Groups](https://github.com/ssbc/private-group-spec) which need identifiers, such as:
@@ -110,11 +116,11 @@ ssb:address/multiserver?multiserverAddress=net%3Awx.larpa.net%3A8008~shs%3ADTNmX
 Canonical SSB URIs **SHOULD** use `/` to separate the parts of the path component, but they **MAY** also use `:` to separate the parts. The following syntax is acceptable (and is currently what `ssb-uri` utilizes, exclusively):
 
 ```
-ssb:message:sha256:<MSGID>
+ssb:message:classic:<MSGID>
 ssb:message:bendybutt-v1:<MSGID>
-ssb:feed:ed25519:<FEEDID>
+ssb:feed:classic:<FEEDID>
 ssb:feed:bendybutt-v1:<FEEDID>
-ssb:blob:sha256:<BLOBID>
+ssb:blob:classic:<BLOBID>
 ssb:address:multiserver?multiserverAddress=<MSADDR>
 ```
 
@@ -190,7 +196,7 @@ type1 -> "experimental"
 type3 -> "message" | "feed" | "blob" | "address" | "encryption-key" | "identity"
 type4 -> "feed"
 
-alg3 -> "sha256" | "ed25519" | "multiserver" | "bendybutt-v1" | "gabbygrove-v1" | "buttwoo-v1" | "box2-dm-dh" | "po-box" | "fusion"
+alg3 -> "classic" | "multiserver" | "bendybutt-v1" | "gabbygrove-v1" | "buttwoo-v1" | "box2-dm-dh" | "po-box" | "fusion"
 alg4 -> "buttwoo-v1"
 
 value -> ([0-9a-zA-Z\-\_\=]):+
