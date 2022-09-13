@@ -6,7 +6,7 @@ SPDX-License-Identifier: CC-BY-4.0
 
 # SSB URI Specification
 
-Version: 1.1
+Version: 1.2
 
 Author: Andre 'Staltz' Medeiros <contact@staltz.com>
 
@@ -35,11 +35,13 @@ The specification in this document is compatible with `ssb-uri` while adding sup
   - `ssb:message/bendybutt-v1/<MSGID>`
   - `ssb:message/gabbygrove-v1/<MSGID>`
   - `ssb:message/buttwoo-v1/<MSGID>`
+  - `ssb:message/indexed-v1/<MSGID>`
   - `ssb:feed/classic/<FEEDID>`
   - `ssb:feed/bendybutt-v1/<FEEDID>`
   - `ssb:feed/gabbygrove-v1/<FEEDID>`
   - `ssb:feed/buttwoo-v1/<FEEDID>`
   - `ssb:feed/buttwoo-v1/<FEEDID>/<PARENTMSGID>`
+  - `ssb:feed/indexed-v1/<FEEDID>`
   - `ssb:blob/classic/<BLOBID>`
   - `ssb:address/multiserver?multiserverAddress=<MSADDR>`
   - `ssb:encryption-key/box2-dm-dh/<KEY>`
@@ -69,11 +71,13 @@ ssb:message/classic/<MSGID>
 ssb:message/bendybutt-v1/<MSGID>
 ssb:message/gabbygrove-v1/<MSGID>
 ssb:message/buttwoo-v1/<MSGID>
+ssb:message/indexed-v1/<MSGID>
 ssb:feed/classic/<FEEDID>
 ssb:feed/bendybutt-v1/<FEEDID>
 ssb:feed/gabbygrove-v1/<FEEDID>
 ssb:feed/buttwoo-v1/<FEEDID>
 ssb:feed/buttwoo-v1/<FEEDID>/<PARENTMSGID>
+ssb:feed/indexed-v1/<FEEDID>
 ssb:blob/classic/<BLOBID>
 ```
 
@@ -196,7 +200,7 @@ type1 -> "experimental"
 type3 -> "message" | "feed" | "blob" | "address" | "encryption-key" | "identity"
 type4 -> "feed"
 
-alg3 -> "classic" | "multiserver" | "bendybutt-v1" | "gabbygrove-v1" | "buttwoo-v1" | "box2-dm-dh" | "po-box" | "fusion"
+alg3 -> "classic" | "multiserver" | "bendybutt-v1" | "gabbygrove-v1" | "buttwoo-v1" | "indexed-v1" | "box2-dm-dh" | "po-box" | "fusion"
 alg4 -> "buttwoo-v1"
 
 value -> ([0-9a-zA-Z\-\_\=]):+
