@@ -36,6 +36,7 @@ The specification in this document is compatible with `ssb-uri` while adding sup
   - `ssb:message/gabbygrove-v1/<MSGID>`
   - `ssb:message/buttwoo-v1/<MSGID>`
   - `ssb:message/indexed-v1/<MSGID>`
+  - `ssb:message/cloaked/<KEY>`
   - `ssb:feed/classic/<FEEDID>`
   - `ssb:feed/bendybutt-v1/<FEEDID>`
   - `ssb:feed/gabbygrove-v1/<FEEDID>`
@@ -58,7 +59,7 @@ The specification in this document is compatible with `ssb-uri` while adding sup
 
 ## Overview
 
-There are two main categories of SSB URIs: **Canonical** and **Experimental**. The conceptual difference between these two is that canonical SSB URIs make use of the **path component** in the URI to specify the resource, while experimental SSB URIs use *only* the **query component** to specify the resource.
+There are two main categories of SSB URIs: **Canonical** and **Experimental**. The conceptual difference between these two is that canonical SSB URIs make use of the **path component** in the URI to specify the resource, while experimental SSB URIs use _only_ the **query component** to specify the resource.
 
 The third category, **Deprecated**, is used to denote canonical SSB URIs that MUST still be supported by application, but SHOULD be avoided whenever possible.
 
@@ -81,7 +82,7 @@ ssb:feed/indexed-v1/<FEEDID>
 ssb:blob/classic/<BLOBID>
 ```
 
-Where `<MSGID>`, `<FEEDID>`, `<BLOBID>` are *URI-safe Base64 encoded* strings that identify those refs. URI-safe Base64 is equivalent to Base64 where `+` characters are replaced with `-`, and `/` characters are replaced with `_`.
+Where `<MSGID>`, `<FEEDID>`, `<BLOBID>` are _URI-safe Base64 encoded_ strings that identify those refs. URI-safe Base64 is equivalent to Base64 where `+` characters are replaced with `-`, and `/` characters are replaced with `_`.
 
 In the special case of `ssb:feed/buttwoo-v1/<FEEDID>/<PARENTMSGID>`, the `<PARENTMSGID>` is the URI-safe Base64 encoded data of a buttwoo-v1 message URI (i.e. `<MSGID>` from `ssb:message/buttwoo-v1/<MSGID>`).
 
@@ -101,7 +102,7 @@ There are also new concepts related to [Private Groups](https://github.com/ssbc/
 - `ssb:encryption-key/box2-dm-dh/<KEY>`
 - `ssb:identity/po-box/<KEY>`
 
-Where `<KEY>` are *URI-safe Base64 encoded* strings, similar to the previous canonical SSB URIs.
+Where `<KEY>` are _URI-safe Base64 encoded_ strings, similar to the previous canonical SSB URIs.
 
 **Multiserver address:**
 
@@ -130,7 +131,7 @@ ssb:address:multiserver?multiserverAddress=<MSADDR>
 
 ### Experimental SSB URIs
 
-These SSB URIs are free-form and allow developers to pass any parameters to SSB applications without requiring consensus among the SSB applications. These URIs have an *empty authority* component and path component always matching `experimental` (this is to support Firefox's handling of custom schemes) but have a *non-empty query* component. The query parameters are the only mechanism through which information is conveyed. They satisfy the syntax below (any number of parameters allowed, but we show two, for illustration):
+These SSB URIs are free-form and allow developers to pass any parameters to SSB applications without requiring consensus among the SSB applications. These URIs have an _empty authority_ component and path component always matching `experimental` (this is to support Firefox's handling of custom schemes) but have a _non-empty query_ component. The query parameters are the only mechanism through which information is conveyed. They satisfy the syntax below (any number of parameters allowed, but we show two, for illustration):
 
 ```
 ssb:experimental?<key1>=<value1>
@@ -140,7 +141,6 @@ ssb:experimental?<key1>=<value1>&<key2>=<value2>
 #### Known experimental SSB URIs
 
 Experimental SSB URIs do not need to be included in this specification before they can be used, but we encourage developers to submit all known experimental SSB URIs depended by applications. This facilitates the future canonicalization of new SSB URIs. Please feel free to submit new entries here, as long as you know they are used in applications:
-
 
 **Action to join a room:**
 
@@ -200,7 +200,7 @@ type1 -> "experimental"
 type3 -> "message" | "feed" | "blob" | "address" | "encryption-key" | "identity"
 type4 -> "feed"
 
-alg3 -> "classic" | "multiserver" | "bendybutt-v1" | "gabbygrove-v1" | "buttwoo-v1" | "indexed-v1" | "box2-dm-dh" | "po-box" | "fusion"
+alg3 -> "classic" | "multiserver" | "bendybutt-v1" | "gabbygrove-v1" | "buttwoo-v1" | "indexed-v1" | "cloaked" | "box2-dm-dh" | "po-box" | "fusion"
 alg4 -> "buttwoo-v1"
 
 value -> ([0-9a-zA-Z\-\_\=]):+
