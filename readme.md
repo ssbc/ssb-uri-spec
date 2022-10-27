@@ -47,6 +47,7 @@ The specification in this document is compatible with `ssb-uri` while adding sup
   - `ssb:address/multiserver?multiserverAddress=<MSADDR>`
   - `ssb:encryption-key/box2-dm-dh/<KEY>`
   - `ssb:identity/po-box/<KEY>`
+  - `ssb:identity/group/<KEY>`
   - `ssb:identity/fusion/<KEY>`
 - **Experimental SSB URIs**
   - `ssb:experimental?action=claim-http-invite&invite=<CODE>&multiserverAddress=<MSADDR>`
@@ -200,7 +201,7 @@ type1 -> "experimental"
 type3 -> "message" | "feed" | "blob" | "address" | "encryption-key" | "identity"
 type4 -> "feed"
 
-alg3 -> "classic" | "multiserver" | "bendybutt-v1" | "gabbygrove-v1" | "buttwoo-v1" | "indexed-v1" | "cloaked" | "box2-dm-dh" | "po-box" | "fusion"
+alg3 -> "classic" | "multiserver" | "bendybutt-v1" | "gabbygrove-v1" | "buttwoo-v1" | "indexed-v1" | "cloaked" | "box2-dm-dh" | "po-box" | "group" | "fusion"
 alg4 -> "buttwoo-v1"
 
 value -> ([0-9a-zA-Z\-\_\=]):+
